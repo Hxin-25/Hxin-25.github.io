@@ -3,6 +3,19 @@ layout: page
 description: "「离开世界之前 一切都是过程」"
 ---
 
+<!-- File Cabinet Entry -->
+<div class="grid">
+    <a href="{{ site.baseurl }}/gallery.html" class="card">
+        <img src="{{ site.baseurl }}/img/gallery/nature1.jpg" alt="文件柜缩略图" class="card-image">
+        <div class="card-content">
+            <h3>文件柜</h3>
+            <p>存放一些文件和图片</p>
+        </div>
+    </a>
+</div>
+
+<hr>
+
 {% for post in paginator.posts %}
 <div class="post-preview">
     <a href="{{ post.url | prepend: site.baseurl }}">

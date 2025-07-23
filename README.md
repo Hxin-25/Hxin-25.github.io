@@ -1,63 +1,29 @@
-[Hxin Blog](https://hxin.me)
-================================
+# 欢迎来到 Hxin-25 的数字空间
 
-> I never expected this to become popular.
+> 记录、分享、成长。
 
-![](http://huangxuan.me/img/blog-desktop.jpg)
+---
 
+你好，我是 **Hxin-25**。
 
-[User Manual 👉](_doc/Manual.md)
---------------------------------------------------
+这是一个属于我的小小角落，用来存放我的学习笔记、技术文章和一些不成熟的思考。
 
-### Getting Started
+我热衷于探索新知识，并相信分享是最好的学习方式。希望这里的内容能对你有所启发。
 
-1. You will need [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/) to use [Jekyll](https://jekyllrb.com/). Following [Using Jekyll with Bundler](https://jekyllrb.com/tutorials/using-jekyll-with-bundler/) to fullfill the enviromental requirement.
+### 关于本站
 
-2. Installed dependencies in the `Gemfile`:
+这个博客是基于 [Jekyll](https://jekyllrb.com/) 和 [Hux Blog](https://github.com/Huxpro/huxpro.github.io) 主题搭建的。
 
-```sh
-$ bundle install 
-```
+如果你也想拥有一个类似的博客，可以参考项目的[说明文档](_doc/Manual.md)。
 
-3. Serve the website (`localhost:4000` by default):
+### 联系我
 
-```sh
-$ bundle exec jekyll serve  # alternatively, npm start
-```
+*   **GitHub:** [@Hxin-25](https://github.com/Hxin-25)
+*   **邮箱:** `caloner25@qq.com` 
 
-### Development (Build From Source)
+---
 
-To modify the theme, you will need [Grunt](https://gruntjs.com/). There are numbers of tasks you can find in the `Gruntfile.js`, includes minifing JavaScript, compiling `.less` to `.css`, adding banners to keep the Apache 2.0 license intact, watching for changes, etc. 
-
-Yes, they were inherited and are extremely old-fashioned. There is no modularization and transpilation, etc.
-
-Critical Jekyll-related code are located in `_include/` and `_layouts/`. Most of them are [Liquid](https://github.com/Shopify/liquid/wiki) templates.
-
-This theme uses the default code syntax highlighter of jekyll, [Rouge](http://rouge.jneen.net/), which is compatible with Pygments theme so just pick any pygments theme css (e.g. from [here](http://jwarby.github.io/jekyll-pygments-themes/languages/javascript.html) and replace the content of `highlight.less`.
-
-
-### Interesting to know more? Checkout the [full user manual](_doc/Manual.md)!
-
-
-Other Resources
----------------
-
-Ports
-- [**Hexo**](https://github.com/Kaijun/hexo-theme-huxblog) by @kaijun
-- [**React-SSR**](https://github.com/LucasIcarus/huxpro.github.io/tree/ssr) by @LucasIcarus
-
-[Starter/Boilerplate](https://github.com/huxpro/huxblog-boilerplate)
-- Out of date. Helps wanted for updating it on par with the main repo
-
-Translation
-- [🇨🇳  中文文档（有点过时）](https://github.com/Huxpro/huxpro.github.io/blob/master/_doc/README.zh.md)
-
-
-License
--------
+### License
 
 Apache License 2.0.
-Copyright (c) 2015-present Huxpro
-
-Hux Blog is derived from [Clean Blog Jekyll Theme (MIT License)](https://github.com/BlackrockDigital/startbootstrap-clean-blog-jekyll/)
-Copyright (c) 2013-2016 Blackrock Digital LLC.
+Copyright (c) 2025-present Hxin-25
