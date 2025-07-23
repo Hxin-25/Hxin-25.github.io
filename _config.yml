@@ -1,10 +1,10 @@
 # Site settings
-title: Hxin Blog
-SEOTitle: Hxin的博客 | Hxin Blog
+title: Hxin的个人网站
+SEOTitle: Hxin的个人网站 | Hxin's Website
 header-img: img/home-bg.jpg
-email: caloner25@gmail.com
-description: "这里是 @Hxin 的个人博客，与你一起发现更大的世界"
-keyword: "Hxin, Hxin的博客, Hxin Blog, 博客, 个人网站, 互联网, Web, Python, 前端"
+email: caloner@qq.com
+description: "“探索技术边界，构建认知系统。这里是 Hxin 的数字花园，一个关于学习、创造和反思的地方。”"
+keyword: "终身学习者, 系统化思维, 知识管理, 深度阅读, 个人成长, 自动化, 效率工具, 数字花园, 树莓派 (Raspberry Pi), 人工智能 (AI), LLM, 人脸识别, Python, iOS开发, Swift, Web开发, 摄影, 剪辑"
 url: "https://hxin.me" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
@@ -13,10 +13,7 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username: Hxin
-zhihu_username: Hxin
-github_username: Hxin
-twitter_username: Hxin
+github_username: hxin-25
 #facebook_username:  Hxin
 #linkedin_username:  firstname-lastname-idxxxx
 
@@ -75,7 +72,7 @@ ga_domain: huangxuan.me
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
 sidebar-about-description: "要做一个有 swag 的程序员 <br> React Team @ Meta"
-sidebar-avatar: https://github.com/Huxpro.png # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/Me.jpeg # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
 featured-tags: true # whether or not using Feature-Tags
