@@ -1,19 +1,7 @@
 ---
 layout: page
-description: "「世界的模样，取决于你凝视它的目光」"
+description: "My Personal Blog"
 ---
-
-<!-- File Cabinet Entry -->
-<div class="grid">
-    <a href="{{ site.baseurl }}/gallery.html" class="card">
-        <div class="card-content">
-            <h3>文件柜</h3>
-            <p>存放一些文件和图片</p>
-        </div>
-    </a>
-</div>
-
-<hr>
 
 {% for post in paginator.posts %}
 <div class="post-preview">
@@ -27,15 +15,12 @@ description: "「世界的模样，取决于你凝视它的目光」"
         </h3>
         {% endif %}
         <div class="post-content-preview">
-            {% if post.lang == 'en' %}
-                {{ post.content | strip_html | truncate:300 }}
-            {% else %}
-                {{ post.content | strip_html | truncate:200 }}
-            {% endif %}
+            {{ post.content | strip_html | truncate:200 }}
         </div>
     </a>
     <p class="post-meta">
-        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B
+        %-d, %Y" }}
     </p>
 </div>
 <hr>

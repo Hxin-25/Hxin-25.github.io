@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hxin's Blog</title>
+    <description>记录学习与生活</description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Thu, 20 Nov 2025 21:40:26 +0800</pubDate>
+    <lastBuildDate>Thu, 20 Nov 2025 21:40:26 +0800</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Hello World</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;This is my first post on my new blog.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;hello-world&quot;&gt;Hello World&lt;/h2&gt;
+
+&lt;p&gt;Welcome to my blog! I will share my learning notes and life experiences here.&lt;/p&gt;
+
+&lt;p&gt;Stay tuned!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 19 Nov 2025 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2025/11/19/hello-world/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/11/19/hello-world/</guid>
+        
+        <category>Life</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>树莓派配置科学上网</title>
+        <description>&lt;p&gt;前段时间为了克隆Github上面的项目，切换了树莓派下载源(清华源)。最近在探索树莓派上部署个人网站，利用内网穿透技术，使得公网可以访问内网IP，所以就想到了直接将树莓派的流量全部走代理节点。有了想法就开始尝试，最终探索出了一套配置流程，具体步骤如下。&lt;/p&gt;
+
+&lt;h2 id=&quot;安装-v2raya&quot;&gt;安装 v2rayA&lt;/h2&gt;
+
+&lt;h4 id=&quot;1-添加公钥&quot;&gt;1. 添加公钥&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget &lt;span class=&quot;nt&quot;&gt;-qO&lt;/span&gt; - https://apt.v2raya.org/key/public-key.asc | &lt;span class=&quot;nb&quot;&gt;sudo tee&lt;/span&gt; /etc/apt/keyrings/v2raya.asc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-添加v2raya软件源&quot;&gt;2. 添加V2RayA软件源&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;deb [signed-by=/etc/apt/keyrings/v2raya.asc] https://apt.v2raya.org/ v2raya main&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;sudo tee&lt;/span&gt; /etc/apt/sources.list.d/v2raya.list
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-安装v2raya&quot;&gt;3. 安装V2RayA&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;v2raya v2ray
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;4-启动v2raya&quot;&gt;4. 启动v2rayA&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start v2raya
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;5-设置开机自启&quot;&gt;5. 设置开机自启&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;v2raya
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;6-查看服务状态&quot;&gt;6. 查看服务状态&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl status v2raya
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;配置-v2raya-客户端&quot;&gt;配置 v2rayA 客户端&lt;/h2&gt;
+
+&lt;h4 id=&quot;1-获取树莓派ip&quot;&gt;1. 获取树莓派IP&lt;/h4&gt;
+&lt;p&gt;在终端输入 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hostname -I&lt;/code&gt; 获取你的树莓派IP地址。&lt;/p&gt;
+
+&lt;h4 id=&quot;2-访问web界面&quot;&gt;2. 访问Web界面&lt;/h4&gt;
+&lt;p&gt;在任何位于同一局域网的设备（电脑、手机）的浏览器中，访问 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://&amp;lt;你的树莓派IP地址&amp;gt;:2017&lt;/code&gt;。&lt;/p&gt;
+
+&lt;h4 id=&quot;3-初始化设置&quot;&gt;3. 初始化设置&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;首次访问需要创建管理员用户名和密码。&lt;/li&gt;
+  &lt;li&gt;登录后，点击左侧“导入(Import)”，粘贴你的 VPN订阅链接 并更新。&lt;/li&gt;
+  &lt;li&gt;回到主页，从列表中选择一个节点。&lt;/li&gt;
+  &lt;li&gt;点击右侧的选择，当它变为“取消”并显示延迟时，表示连接成功。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;配置系统全局代理&quot;&gt;配置系统全局代理&lt;/h2&gt;
+&lt;p&gt;这是让树莓派上所有应用都通过VPN上网的关键一步。&lt;/p&gt;
+
+&lt;h4 id=&quot;1-编辑全局环境配置文件&quot;&gt;1. 编辑全局环境配置文件&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/environment
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-添加代理配置&quot;&gt;2. 添加代理配置&lt;/h4&gt;
+&lt;p&gt;在文件末尾添加以下内容 (v2rayA 默认的HTTP代理端口为 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;20171&lt;/code&gt;)：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：此处为纯文本，请勿添加其他格式。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;http_proxy=&quot;http://127.0.0.1:20171&quot;
+https_proxy=&quot;http://127.0.0.1:20171&quot;
+no_proxy=&quot;localhost,127.0.0.1&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;3-保存文件&quot;&gt;3. 保存文件&lt;/h4&gt;
+&lt;p&gt;按 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ctrl+X&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Y&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enter&lt;/code&gt; 保存并退出。&lt;/p&gt;
+
+&lt;h4 id=&quot;4-重启树莓派&quot;&gt;4. 重启树莓派&lt;/h4&gt;
+&lt;p&gt;此配置&lt;strong&gt;必须重启&lt;/strong&gt;才能完全生效。&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;验证配置&quot;&gt;验证配置&lt;/h2&gt;
+&lt;p&gt;重启后，打开终端，执行以下命令来检查你的公网出口IP。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl ip.sb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;或者&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;curl myip.ipip.net
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果返回的 IP 地址是你所选 VPN 节点的 IP，那么恭喜你，所有配置均已成功！&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;2025年7月20日 Hxin 于家中&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        <pubDate>Sun, 20 Jul 2025 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2025/07/20/Pi/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/07/20/Pi/</guid>
+        
+        <category>Web</category>
+        
+        <category>树莓派</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>《连结》</title>
+        <description>&lt;p&gt;“文件、档案、表格、许可、法规，以及其他各种官僚程序，改变了资讯在社会上流动的方式，也就改变了权力运作的方式。这样一来，想再了解权力，也变得更加困难。在办公室与档案库紧闭的大门后面，究竟发生了什么事？一些不知名的官员，在这些地方分析整理着成堆的文件，最后大笔一-挥、鼠标一点，就决定了我们的命运。”&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 Apr 2025 20:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2025/04/05/lianjie/</link>
+        <guid isPermaLink="true">http://localhost:4000/2025/04/05/lianjie/</guid>
+        
+        <category>读书</category>
+        
+        
+      </item>
+    
+  </channel>
+</rss>

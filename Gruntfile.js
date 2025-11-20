@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     // Project configuration.
     grunt.initConfig({
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         },
         banner: '/*!\n' +
             ' * <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
-            ' * Copyright <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+            ' * Copyright 2025 <%= pkg.author %>\n' +
             ' */\n',
         usebanner: {
             dist: {

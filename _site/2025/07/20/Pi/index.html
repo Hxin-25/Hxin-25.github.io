@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="记录学习与生活">
+    <meta name="keyword" content="Hxin, Blog, 学习, 生活">
+    <link rel="shortcut icon" href="/img/avatar-hxin.jpg">
+
+    <title>树莓派配置科学上网 - Hxin's Blog | 记录学习与生活</title>
+
+    <link rel="canonical" href="http://localhost:4000/2025/07/20/Pi/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hxin-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href=" /css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hxin's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="blog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#blog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e) {
+        if ($navbar.className.indexOf('in') > 0) {
+            // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function () {
+                // prevent frequently toggle
+                if ($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            }, 400)
+        } else {
+            // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg-hxin.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home-bg-hxin.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Web" title="Web">Web</a>
+                        
+                        <a class="tag" href="/tags/#树莓派" title="树莓派">树莓派</a>
+                        
+                    </div>
+                    <h1>树莓派配置科学上网</h1>
+                    
+                    
+                    <h2 class="subheading"></h2>
+                    
+                    <span class="meta">Posted by Hxin on July 20, 2025</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>前段时间为了克隆Github上面的项目，切换了树莓派下载源(清华源)。最近在探索树莓派上部署个人网站，利用内网穿透技术，使得公网可以访问内网IP，所以就想到了直接将树莓派的流量全部走代理节点。有了想法就开始尝试，最终探索出了一套配置流程，具体步骤如下。</p>
+
+<h2 id="安装-v2raya">安装 v2rayA</h2>
+
+<h4 id="1-添加公钥">1. 添加公钥</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>wget <span class="nt">-qO</span> - https://apt.v2raya.org/key/public-key.asc | <span class="nb">sudo tee</span> /etc/apt/keyrings/v2raya.asc
+</code></pre></div></div>
+
+<h4 id="2-添加v2raya软件源">2. 添加V2RayA软件源</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"deb [signed-by=/etc/apt/keyrings/v2raya.asc] https://apt.v2raya.org/ v2raya main"</span> | <span class="nb">sudo tee</span> /etc/apt/sources.list.d/v2raya.list
+<span class="nb">sudo </span>apt update
+</code></pre></div></div>
+
+<h4 id="3-安装v2raya">3. 安装V2RayA</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt <span class="nb">install </span>v2raya v2ray
+</code></pre></div></div>
+
+<h4 id="4-启动v2raya">4. 启动v2rayA</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl start v2raya
+</code></pre></div></div>
+
+<h4 id="5-设置开机自启">5. 设置开机自启</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>v2raya
+</code></pre></div></div>
+
+<h4 id="6-查看服务状态">6. 查看服务状态</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>systemctl status v2raya
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="配置-v2raya-客户端">配置 v2rayA 客户端</h2>
+
+<h4 id="1-获取树莓派ip">1. 获取树莓派IP</h4>
+<p>在终端输入 <code class="language-plaintext highlighter-rouge">hostname -I</code> 获取你的树莓派IP地址。</p>
+
+<h4 id="2-访问web界面">2. 访问Web界面</h4>
+<p>在任何位于同一局域网的设备（电脑、手机）的浏览器中，访问 <code class="language-plaintext highlighter-rouge">http://&lt;你的树莓派IP地址&gt;:2017</code>。</p>
+
+<h4 id="3-初始化设置">3. 初始化设置</h4>
+<ul>
+  <li>首次访问需要创建管理员用户名和密码。</li>
+  <li>登录后，点击左侧“导入(Import)”，粘贴你的 VPN订阅链接 并更新。</li>
+  <li>回到主页，从列表中选择一个节点。</li>
+  <li>点击右侧的选择，当它变为“取消”并显示延迟时，表示连接成功。</li>
+</ul>
+
+<hr />
+
+<h2 id="配置系统全局代理">配置系统全局代理</h2>
+<p>这是让树莓派上所有应用都通过VPN上网的关键一步。</p>
+
+<h4 id="1-编辑全局环境配置文件">1. 编辑全局环境配置文件</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nano /etc/environment
+</code></pre></div></div>
+
+<h4 id="2-添加代理配置">2. 添加代理配置</h4>
+<p>在文件末尾添加以下内容 (v2rayA 默认的HTTP代理端口为 <code class="language-plaintext highlighter-rouge">20171</code>)：</p>
+<blockquote>
+  <p><strong>注意</strong>：此处为纯文本，请勿添加其他格式。</p>
+</blockquote>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http_proxy="http://127.0.0.1:20171"
+https_proxy="http://127.0.0.1:20171"
+no_proxy="localhost,127.0.0.1"
+</code></pre></div></div>
+
+<h4 id="3-保存文件">3. 保存文件</h4>
+<p>按 <code class="language-plaintext highlighter-rouge">Ctrl+X</code> -&gt; <code class="language-plaintext highlighter-rouge">Y</code> -&gt; <code class="language-plaintext highlighter-rouge">Enter</code> 保存并退出。</p>
+
+<h4 id="4-重启树莓派">4. 重启树莓派</h4>
+<p>此配置<strong>必须重启</strong>才能完全生效。</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>reboot
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="验证配置">验证配置</h2>
+<p>重启后，打开终端，执行以下命令来检查你的公网出口IP。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl ip.sb
+</code></pre></div></div>
+<p>或者</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl myip.ipip.net
+</code></pre></div></div>
+
+<p>如果返回的 IP 地址是你所选 VPN 节点的 IP，那么恭喜你，所有配置均已成功！</p>
+
+<blockquote>
+  <p>2025年7月20日 Hxin 于家中</p>
+</blockquote>
+
+
+                <hr>
+
+
+
+
+
+            </div>
+
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                    <li><a href="https://github.com/">My GitHub</a></li>
+                    
+                    <li><a href="#">抖音 (Douyin)</a></li>
+                    
+                    <li><a href="#">小红书 (XiaoHongShu)</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu, add target = "_blank" to <a> -->
+                    
+                    
+
+
+                    
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Hxin's Blog 2025
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src=" /js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src=" /js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src=" /js/hxin-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so we drop it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if ($('#tag_cloud').length !== 0) {
+        async("/js/jquery.tagcloud.js", function () {
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: { start: '#bbbbee', end: '#0085a1' },
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
