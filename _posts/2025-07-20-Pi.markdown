@@ -4,6 +4,7 @@ title:        "树莓派配置科学上网"
 author:       "Hxin"
 header-style: text
 catalog:      true
+header-img: "img/avatar-hxin.jpg"
 tags:
     - Web
     - 树莓派

@@ -4,7 +4,7 @@ title:      "《连结》"
 subtitle:   ""
 date:       2025-04-05 12:00:00
 author:     "Hxin"
-header-img: "img/home-bg.jpg"
+header-img: "img/avatar-hxin.jpg"
 catalog:    false
 tags:
     - 读书
