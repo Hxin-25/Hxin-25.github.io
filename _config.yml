@@ -2,10 +2,10 @@
 title: Hxin's Blog
 SEOTitle: Hxin's Blog | 记录学习与生活
 header-img: img/home-bg-hxin.jpg
-email: your-email@domain.com
+email: caloner25@qq.com
 description: "记录学习与生活"
 keyword: "Hxin, Blog, 学习, 生活"
-url: "http://your-domain.com"          # your host, for absolute URL
+url: "http://hxin.com"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 
 
