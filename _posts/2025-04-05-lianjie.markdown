@@ -1,4 +1,4 @@
-Boo---
+---
 layout:     post
 title:      "《连结》"
 subtitle:   ""
