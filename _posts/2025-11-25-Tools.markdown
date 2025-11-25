@@ -2,7 +2,7 @@
 layout:     post
 title:      "限制自己的不是工具"
 subtitle:   "在这个时代，想法和执行力才是稀缺资源"
-date:       2025-11-25 13:00:00
+date:       2025-11-25 00:00:00
 author:     "Hxin"
 header-img: "img/avatar-hxin.jpg"
 catalog:    true
